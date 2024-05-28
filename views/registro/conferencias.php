@@ -1,6 +1,5 @@
-
 <h2 class="pagina__heading"><?php echo $titulo; ?></h2>
-<p class="pagina__descripcion">Elige hasta 5 eventos para asistir de forma presencial.</p>
+<p class="pagina__descripcion">Elige tus cursos para empezar a tomarlos.</p>
 
 <div class="eventos-registro">
     <main class="eventos-registro__listado">
@@ -8,14 +7,14 @@
         <p class="eventos-registro__fecha">Viernes 5 de Octubre</p>
 
         <div class="eventos-registro__grid">
-            <?php foreach($eventos['conferencias_v'] as $evento ) { ?>
+            <?php foreach ($eventos['conferencias_v'] as $evento) { ?>
                 <?php include __DIR__ . '/evento.php'; ?>
             <?php } ?>
         </div>
 
         <p class="eventos-registro__fecha">Sábado 6 de Octubre</p>
         <div class="eventos-registro__grid">
-            <?php foreach($eventos['conferencias_s'] as $evento ) { ?>
+            <?php foreach ($eventos['conferencias_s'] as $evento) { ?>
                 <?php include __DIR__ . '/evento.php'; ?>
             <?php } ?>
         </div>
@@ -24,14 +23,14 @@
         <p class="eventos-registro__fecha">Viernes 5 de Octubre</p>
 
         <div class="eventos-registro__grid eventos--workshops">
-            <?php foreach($eventos['workshops_v'] as $evento ) { ?>
+            <?php foreach ($eventos['workshops_v'] as $evento) { ?>
                 <?php include __DIR__ . '/evento.php'; ?>
             <?php } ?>
         </div>
 
         <p class="eventos-registro__fecha">Sábado 6 de Octubre</p>
         <div class="eventos-registro__grid eventos--workshops">
-            <?php foreach($eventos['workshops_s'] as $evento ) { ?>
+            <?php foreach ($eventos['workshops_s'] as $evento) { ?>
                 <?php include __DIR__ . '/evento.php'; ?>
             <?php } ?>
         </div>
@@ -47,7 +46,7 @@
             <label for="regalo" class="registro__label">Selecciona un regalo</label>
             <select id="regalo" class="registro__select">
                 <option value="">-- Selecciona tu regalo --</option>
-                <?php foreach($regalos as $regalo) { ?>
+                <?php foreach ($regalos as $regalo) { ?>
                     <option value="<?php echo $regalo->id; ?>"><?php echo $regalo->nombre; ?></option>
                 <?php } ?>
             </select>
@@ -60,4 +59,3 @@
         </form>
     </aside>
 </div>
-  

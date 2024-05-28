@@ -3,26 +3,26 @@
 <div class="dashboard__contenedor-boton">
     <a class="dashboard__boton" href="/admin/eventos/crear">
         <i class="fa-solid fa-circle-plus"></i>
-        Añadir Evento
+        Añadir Curso
     </a>
 </div>
 
 
 <div class="dashboard__contenedor">
-    <?php if(!empty($eventos)) { ?>
+    <?php if (!empty($eventos)) { ?>
         <table class="table">
             <thead class="table__thead">
                 <tr>
-                    <th scope="col" class="table__th">Evento</th>
+                    <th scope="col" class="table__th">Curso</th>
                     <th scope="col" class="table__th">Categoría</th>
                     <th scope="col" class="table__th">Día y Hora</th>
-                    <th scope="col" class="table__th">Ponente</th>
+                    <th scope="col" class="table__th">Instructor</th>
                     <th scope="col" class="table__th"></th>
                 </tr>
             </thead>
 
             <tbody class="table__tbody">
-                <?php foreach($eventos as $evento) { ?>
+                <?php foreach ($eventos as $evento) { ?>
                     <tr class="table__tr">
                         <td class="table__td">
                             <?php echo $evento->nombre; ?>
@@ -37,7 +37,8 @@
                             <?php echo $evento->ponente->nombre . " " . $evento->ponente->apellido; ?>
                         </td>
                         <td class="table__td--acciones">
-                            <a class="table__accion table__accion--editar" href="/admin/eventos/editar?id=<?php echo $evento->id; ?>">
+                            <a class="table__accion table__accion--editar"
+                                href="/admin/eventos/editar?id=<?php echo $evento->id; ?>">
                                 <i class="fa-solid fa-pencil"></i>
                                 Editar
                             </a>
@@ -55,10 +56,10 @@
             </tbody>
         </table>
     <?php } else { ?>
-        <p class="text-center">No Hay Eventos Aún</p>
+        <p class="text-center">No Hay Cursos Aún</p>
     <?php } ?>
 </div>
 
-<?php 
-    echo $paginacion;
+<?php
+echo $paginacion;
 ?>

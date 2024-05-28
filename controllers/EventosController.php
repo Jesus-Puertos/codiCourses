@@ -10,17 +10,19 @@ use Model\Hora;
 use Model\Ponente;
 use MVC\Router;
 
-class EventosController {
+class EventosController
+{
 
-    public static function index(Router $router) {
-        if(!is_admin()) {
+    public static function index(Router $router)
+    {
+        if (!is_admin()) {
             header('Location: /login');
         }
-        
+
         $pagina_actual = $_GET['page'];
         $pagina_actual = filter_var($pagina_actual, FILTER_VALIDATE_INT);
 
-        if(!$pagina_actual || $pagina_actual < 1) {
+        if (!$pagina_actual || $pagina_actual < 1) {
             header('Location: /admin/eventos?page=1');
         }
 
@@ -30,7 +32,7 @@ class EventosController {
 
         $eventos = Evento::paginar($por_pagina, $paginacion->offset());
 
-        foreach($eventos as $evento) {
+        foreach ($eventos as $evento) {
             $evento->categoria = Categoria::find($evento->categoria_id);
             $evento->dia = Dia::find($evento->dia_id);
             $evento->hora = Hora::find($evento->hora_id);
@@ -38,14 +40,15 @@ class EventosController {
         }
 
         $router->render('admin/eventos/index', [
-            'titulo' => 'Conferencias y Workshops',
+            'titulo' => 'Cursos presenciales y virtuales',
             'eventos' => $eventos,
             'paginacion' => $paginacion->paginacion()
         ]);
     }
 
-    public static function crear(Router $router) {
-        if(!is_admin()) {
+    public static function crear(Router $router)
+    {
+        if (!is_admin()) {
             header('Location: /login');
             return;
         }
@@ -58,19 +61,19 @@ class EventosController {
 
         $evento = new Evento;
 
-        if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if(!is_admin()) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!is_admin()) {
                 header('Location: /login');
                 return;
             }
-            
+
             $evento->sincronizar($_POST);
 
             $alertas = $evento->validar();
 
-            if(empty($alertas)) {
+            if (empty($alertas)) {
                 $resultado = $evento->guardar();
-                if($resultado) {
+                if ($resultado) {
                     header('Location: /admin/eventos');
                     return;
                 }
@@ -78,7 +81,7 @@ class EventosController {
         }
 
         $router->render('admin/eventos/crear', [
-            'titulo' => 'Registrar Evento',
+            'titulo' => 'Registrar Cursos',
             'alertas' => $alertas,
             'categorias' => $categorias,
             'dias' => $dias,
@@ -87,9 +90,10 @@ class EventosController {
         ]);
     }
 
-    public static function editar(Router $router) {
+    public static function editar(Router $router)
+    {
 
-        if(!is_admin()) {
+        if (!is_admin()) {
             header('Location: /login');
             return;
         }
@@ -99,7 +103,7 @@ class EventosController {
         $id = $_GET['id'];
         $id = filter_var($id, FILTER_VALIDATE_INT);
 
-        if(!$id) {
+        if (!$id) {
             header('Location: /admin/eventos');
             return;
         }
@@ -109,24 +113,24 @@ class EventosController {
         $horas = Hora::all('ASC');
 
         $evento = Evento::find($id);
-        if(!$evento) {
+        if (!$evento) {
             header('Location: /admin/eventos');
             return;
         }
 
-        if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if(!is_admin()) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!is_admin()) {
                 header('Location: /login');
                 return;
             }
-            
+
             $evento->sincronizar($_POST);
 
             $alertas = $evento->validar();
 
-            if(empty($alertas)) {
+            if (empty($alertas)) {
                 $resultado = $evento->guardar();
-                if($resultado) {
+                if ($resultado) {
                     header('Location: /admin/eventos');
                     return;
                 }
@@ -134,7 +138,7 @@ class EventosController {
         }
 
         $router->render('admin/eventos/editar', [
-            'titulo' => 'Editar Evento',
+            'titulo' => 'Editar Curso',
             'alertas' => $alertas,
             'categorias' => $categorias,
             'dias' => $dias,
@@ -144,22 +148,23 @@ class EventosController {
     }
 
 
-    public static function eliminar() {
+    public static function eliminar()
+    {
 
-        if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if(!is_admin()) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!is_admin()) {
                 header('Location: /login');
                 return;
             }
 
             $id = $_POST['id'];
             $evento = Evento::find($id);
-            if(!isset($evento) ) {
+            if (!isset($evento)) {
                 header('Location: /admin/eventos');
                 return;
             }
             $resultado = $evento->eliminar();
-            if($resultado) {
+            if ($resultado) {
                 header('Location: /admin/eventos');
                 return;
             }

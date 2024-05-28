@@ -1,14 +1,14 @@
 <main class="agenda">
-    <h2 class="agenda__heading">Workshops & Conferencias</h2>
-    <p class="agenda__descripcion">Talleres y Conferencias dictados por expertos en desarrollo web</p>
+    <h2 class="agenda__heading">Cursos presenciales y virtuales</h2>
+    <p class="agenda__descripcion">Los mejores cursos dictados por expertos en la programación</p>
 
     <div class="eventos">
-        <h3 class="eventos__heading">&lt;Conferencias /></h3>
+        <h3 class="eventos__heading">Presenciales</h3>
         <p class="eventos__fecha">Viernes 5 de Octubre</p>
 
         <div class="eventos__listado slider swiper">
             <div class="swiper-wrapper">
-                <?php foreach($eventos['conferencias_v'] as $evento ) { ?>
+                <?php foreach ($eventos['conferencias_v'] as $evento) { ?>
                     <?php include __DIR__ . '../../templates/evento.php'; ?>
                 <?php } ?>
             </div>
@@ -20,7 +20,7 @@
 
         <div class="eventos__listado slider swiper">
             <div class="swiper-wrapper">
-                <?php foreach($eventos['conferencias_s'] as $evento ) { ?>
+                <?php foreach ($eventos['conferencias_s'] as $evento) { ?>
                     <?php include __DIR__ . '../../templates/evento.php'; ?>
                 <?php } ?>
             </div>
@@ -30,12 +30,12 @@
     </div>
 
     <div class="eventos eventos--workshops">
-        <h3 class="eventos__heading">&lt;Workshops /></h3>
+        <h3 class="eventos__heading">Virtuales</h3>
         <p class="eventos__fecha">Viernes 5 de Octubre</p>
 
         <div class="eventos__listado slider swiper">
             <div class="swiper-wrapper">
-                <?php foreach($eventos['workshops_v'] as $evento ) { ?>
+                <?php foreach ($eventos['workshops_v'] as $evento) { ?>
                     <?php include __DIR__ . '../../templates/evento.php'; ?>
                 <?php } ?>
             </div>
@@ -47,7 +47,7 @@
 
         <div class="eventos__listado slider swiper">
             <div class="swiper-wrapper">
-                <?php foreach($eventos['workshops_s'] as $evento ) { ?>
+                <?php foreach ($eventos['workshops_s'] as $evento) { ?>
                     <?php include __DIR__ . '../../templates/evento.php'; ?>
                 <?php } ?>
             </div>
